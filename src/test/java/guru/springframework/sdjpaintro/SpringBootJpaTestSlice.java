@@ -19,6 +19,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
  */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DataJpaTest
+// use @ComponentScan to scan particular packages and include the respective beans etc. In this case we include the
+// DataInitializer class in the test context, so that it can populate the database with initial data for testing
 @ComponentScan(basePackages = {"guru.springframework.sdjpaintro.bootstrap"})
 public class SpringBootJpaTestSlice {
 
