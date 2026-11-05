@@ -1,4 +1,4 @@
--- updated to use caching_sha2_password plugin for MySQL 9.0
+-- updated to use caching_sha2_password plugin for MySQL 9.0 and removed Flush Privileges command since it is not needed in MySQL 9.0
 DROP DATABASE IF EXISTS bookdb;
 DROP USER IF EXISTS `bookadmin`@`%`;
 DROP USER IF EXISTS `bookuser`@`%`;
@@ -8,4 +8,3 @@ GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, EX
 CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `bookdb`.* TO `bookadmin`@`%`;
 CREATE USER IF NOT EXISTS 'bookuser'@'%' IDENTIFIED WITH caching_sha2_password BY 'password';
 GRANT SELECT, INSERT, UPDATE, DELETE, SHOW VIEW ON `bookdb`.* TO `bookuser`@`%`;
-FLUSH PRIVILEGES;
