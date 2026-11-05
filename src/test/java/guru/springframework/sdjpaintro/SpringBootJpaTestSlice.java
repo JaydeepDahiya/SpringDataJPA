@@ -25,6 +25,8 @@ public class SpringBootJpaTestSlice {
     @Autowired
     BookRepository bookRepository;
 
+    // can be used to commit the transaction for a test method. It is better to use @Commit instead.
+    //@Rollback(value = false)
     @Commit
     @Order(1)
     @Test
