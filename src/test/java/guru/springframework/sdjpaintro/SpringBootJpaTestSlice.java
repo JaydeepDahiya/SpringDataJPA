@@ -11,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.Commit;
-import org.springframework.test.annotation.Rollback;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -27,6 +26,8 @@ public class SpringBootJpaTestSlice {
     @Autowired
     BookRepository bookRepository;
 
+    // can be used to commit the transaction for a test method. It is better to use @Commit instead.
+    //@Rollback(value = false)
     @Commit
     @Order(1)
     @Test
