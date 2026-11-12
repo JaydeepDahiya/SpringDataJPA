@@ -1,8 +1,11 @@
 package guru.springframework.sdjpaintro.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
-import jakarta.persistence.*;
 import java.util.UUID;
 
 /**
@@ -11,8 +14,9 @@ import java.util.UUID;
 @Entity
 public class BookUuid {
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GeneratedValue(generator = "customUuidGen")
+    //  "uuid2" is the built-in implementation Hibernate knows how to execute
+    @GenericGenerator(name = "customUuidGen", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", updatable = false, nullable = false)
     private UUID id;
 
