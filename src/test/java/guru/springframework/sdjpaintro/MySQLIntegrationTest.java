@@ -7,7 +7,6 @@ import guru.springframework.sdjpaintro.domain.composite.AuthorComposite;
 import guru.springframework.sdjpaintro.domain.composite.AuthorEmbedded;
 import guru.springframework.sdjpaintro.domain.composite.NameId;
 import guru.springframework.sdjpaintro.repositories.*;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -85,10 +84,11 @@ public class MySQLIntegrationTest {
     void testBookUuid() {
         BookUuid bookUuid = bookUuidRepository.save(new BookUuid());
         assertThat(bookUuid).isNotNull();
-        assertThat(bookUuid.getId());
+        assertThat(bookUuid.getId()).isNotNull();
 
-        BookUuid fetched = bookUuidRepository.getById(bookUuid.getId());
+        BookUuid fetched = bookUuidRepository.getReferenceById(bookUuid.getId());
         assertThat(fetched).isNotNull();
+        assertThat(fetched).isEqualTo(bookUuid);
     }
 
     @Test
@@ -97,8 +97,9 @@ public class MySQLIntegrationTest {
         assertThat(authorUuid).isNotNull();
         assertThat(authorUuid.getId()).isNotNull();
 
-        AuthorUuid fetched = authorUuidRepository.getById(authorUuid.getId());
+        AuthorUuid fetched = authorUuidRepository.getReferenceById(authorUuid.getId());
         assertThat(fetched).isNotNull();
+        assertThat(fetched).isEqualTo(authorUuid);
     }
 
     @Test
@@ -106,10 +107,6 @@ public class MySQLIntegrationTest {
         long countBefore = bookRepository.count();
         assertThat(countBefore).isEqualTo(2);
     }
-
-
-
-
 
 
 }
